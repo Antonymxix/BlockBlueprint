@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlockBlueprint — Minecraft house generator</title>
+    <meta name="description" content="Procedural voxel house generator with a lit 3D preview and Sponge .schem export for WorldEdit." />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="stage"><canvas id="view"></canvas></div>
+    <aside id="panel">
+      <header>
+        <h1>Block<span>Blueprint</span></h1>
+        <p>Describe a house. Get a buildable Minecraft schematic.</p>
+      </header>
+      <section>
+        <label for="prompt">Describe your house</label>
+        <textarea id="prompt" rows="3" placeholder="e.g. a large medieval house with an onion roof and two towers"></textarea>
+        <div class="row"><button id="go" class="primary">Generate</button><button id="dice" title="New random seed">🎲 <span id="seed">1</span></button></div>
+        <div id="chips"></div>
+      </section>
+      <section>
+        <label>Style</label>
+        <div id="styles" class="cards"></div>
+      </section>
+      <section class="grid2">
+        <div><label for="roof">Roof</label><select id="roof"></select></div>
+        <div><label for="shape">Shape</label><select id="shape"></select></div>
+      </section>
+      <section>
+        <div class="slider"><label for="floors">Floors <b id="v-floors"></b></label><input id="floors" type="range" min="1" max="5" /></div>
+        <div class="slider"><label for="width">Width <b id="v-width"></b></label><input id="width" type="range" min="11" max="45" /></div>
+        <div class="slider"><label for="depth">Depth <b id="v-depth"></b></label><input id="depth" type="range" min="9" max="41" /></div>
+        <div class="slider"><label for="towers">Towers <b id="v-towers"></b></label><input id="towers" type="range" min="0" max="4" /></div>
+        <div class="slider"><label for="glass">Glass <b id="v-glass"></b></label><input id="glass" type="range" min="0" max="100" /></div>
+      </section>
+      <section class="toggles">
+        <label><input type="checkbox" id="garden" /> Garden</label>
+        <label><input type="checkbox" id="pool" /> Pool</label>
+        <label><input type="checkbox" id="interior" /> Interior</label>
+        <label><input type="checkbox" id="ground" /> Ground</label>
+      </section>
+      <section>
+        <div class="slider"><label for="time">Time of day <b id="v-time"></b></label><input id="time" type="range" min="0" max="24" step="0.1" /></div>
+        <div class="row">
+          <button id="build">▶ Build animation</button>
+          <button id="rotate">Auto-rotate</button>
+          <button id="shot">📷</button>
+        </div>
+      </section>
+      <section>
+        <label>Export</label>
+        <div class="row">
+          <button id="dl3" class="primary">.schem (v3)</button>
+          <button id="dl2">.schem (v2)</button>
+        </div>
+        <p class="hint">WorldEdit: <code>//schem load name</code> then <code>//paste</code>. Stand where you want the front door.</p>
+        <div id="info"></div>
+        <details><summary>Material list</summary><div id="materials"></div></details>
+      </section>
+    </aside>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
